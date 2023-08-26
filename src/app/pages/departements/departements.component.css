@@ -1,0 +1,5 @@
+/* styles.css ou votre fichier de styles de composant */
+.custom-dialog-container {
+    transform: translate(-50%, -50%) !important; /* Centre la boîte de dialogue */
+  }
+  

@@ -1,0 +1,8 @@
+/* add.component.css */
+.center-dialog {
+    position: absolute;
+    top: -30%;
+    left: -35%;
+    transform: translate(-50%, -50%);
+  }
+  

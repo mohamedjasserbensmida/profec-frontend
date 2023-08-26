@@ -1,0 +1,30 @@
+/* Styles pour le formulaire personnalisé */
+.custom-form {
+    max-width: 450px;
+    margin: 70px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff; /* Couleur de fond du formulaire */
+}
+
+.custom-button {
+    background-color: #28a745; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    border: none;
+}
+
+.custom-button:hover {
+    background-color: #218838; /* Couleur de fond du bouton au survol */
+}
+
+/* Style pour le message d'erreur */
+.is-invalid {
+    border-color: #dc3545 !important; /* Couleur de bordure en cas d'erreur */
+}
+
+.invalid-feedback i {
+    color: #dc3545; /* Couleur du texte d'erreur */
+}

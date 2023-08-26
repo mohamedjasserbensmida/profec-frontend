@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col text-center">
+            <h1 class="mb-4">Départements</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Liste des départements</h5>
+                    <app-list></app-list>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <!-- Placer le bouton en bas de la colonne -->
+            <div class="text-right mt-3">
+                <!-- Ajoutez le bouton directement dans le div text-right avec une marge inférieure -->
+                <button class="btn btn-outline-primary btn-sm mb-2" (click)="openDialog()">Voulez-vous ajouter un département ?</button>
+            </div>
+        </div>
+    </div>
+</div>
