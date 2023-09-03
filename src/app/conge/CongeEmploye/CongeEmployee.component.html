@@ -1,0 +1,115 @@
+<div class="grid">
+  <p-toast></p-toast>
+  <div class="col-12">
+    <div class="card px-2">
+      <p-button label="+ Demande Congé" style="margin-bottom: 5px;margin-top: 7px"  (onClick)="addReclamation=true"></p-button>
+      <p-table #dt1 [value]="principalReclamations" dataKey="id" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 15, 30]"
+               [paginator]="true"
+               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width:5rem">
+              <div class="flex align-items-center">
+                Type
+                <p-columnFilter type="text" field="typeConge" display="menu"></p-columnFilter>
+              </div>
+            </th>
+            <th style="min-width:5rem">
+              <div class="flex align-items-center">
+                Description
+              </div>
+            </th>
+            <th style="min-width:5rem">
+              <div class="flex align-items-center">
+                Date
+              </div>
+            </th>
+            <th style="min-width:5rem">
+              <div class="flex align-items-center">
+                Delete Congé
+              </div>
+            </th>
+            <th style="min-width:5rem">
+              <div class="flex align-items-center">
+                Update Congé
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-reclamation>
+          <tr>
+            <td>
+              {{ reclamation.typeConge}}
+            </td>
+            <td>
+              <p-button icon="pi pi-search" styleClass="p-button-rounded p-button-success" (onClick)="showDescr(reclamation.description)"></p-button>
+            </td>
+            <td>
+              {{ reclamation.dateCreation | date : 'medium'}}
+            </td>
+            <td>
+              <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" (onClick)="deletConges(reclamation.id)"></p-button>
+            </td>
+            <td>
+              <p-button icon="pi pi-bookmark" styleClass="p-button-rounded p-button-secondary" (onClick)="updateReclamation(reclamation)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7">No Congé found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <p-dialog [(visible)]="descReclamation" [style]="{width: '450px'}" header="Description" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+      <p>{{description}}</p>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Close" icon="pi pi-times" class="p-button-text" (click)="descReclamation=false"></button>
+    </ng-template>
+  </p-dialog>
+
+
+
+  <p-dialog [(visible)]="addReclamation" [closable]="false" [style]="{width: '450px'}" header="Information" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+      <div class="field">
+        <label>Type :</label>
+        <p-dropdown [options]="types" [(ngModel)]="newReclamation.typeConge" appendTo="body" placeholder="Select type"
+                    [showClear]="true" [ngClass]="{'ng-invalid ng-dirty' : submitted && !newReclamation.typeConge}"></p-dropdown>
+        <small class="ng-dirty ng-invalid" *ngIf="submitted && !newReclamation.typeConge">Type is required.</small>
+      </div>
+      <div class="field">
+        <label>Description :</label>
+        <textarea pInputTextarea rows="3" cols="20" [(ngModel)]="newReclamation.description"  rows="3" cols="20" [ngClass]="{'ng-invalid ng-dirty' : submitted && !newReclamation.description}"></textarea>
+        <small class="ng-dirty ng-invalid" *ngIf="submitted && !newReclamation.description">Description is required.</small>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="addReclamation=false;newReclamation={};updateOption=false;getPrincipalReclamations()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check"  class="p-button-text" (click)="updateOption==false?addNewReclamation():update();"></button>
+    </ng-template>
+  </p-dialog>
+
+
+  <p-dialog [(visible)]="deleteDialog" [closable]="false" [style]="{width: '450px'}" header="Delete" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+      <p>Are you sure you want to delete this Congé</p>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="deleteDialog=false"></button>
+      <button pButton pRipple label="Delete" icon="pi pi-check"  class="p-button-text" (click)="ConfirmDelete()"></button>
+    </ng-template>
+  </p-dialog>
+
+</div>

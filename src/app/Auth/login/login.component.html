@@ -1,0 +1,58 @@
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+                <div class="d-flex justify-content-center welcome-container">
+                  <h4 class="text-welcome">Welcome To Profectus RH</h4>
+                </div>                
+                <form [formGroup]="Form" class="login-form">
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" formControlName="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password" formControlName="password" required>
+                  </div>
+                  <button class="btn btn-primary btn-block gradient-custom-2" type="button" [disabled]="!Form.valid" (click)="login()">
+                    Log in
+                  </button>
+                  <a class="forgot-password" href="/forgotpwd">Forgot password?</a>
+                  <div class="create-account">
+                    <p>Don't have an account?</p>
+                    <button type="button" class="btn btn-outline-danger" routerLink="/register">Create new</button>
+                  </div>
+                  <div class="error-message" *ngIf="message" style="color: red">{{ message }}</div>
+                </form>
+                
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <div class="mb-4 center-text">
+                  <img src="assets/profectus.png" alt="Logo">
+                </div>
+                <section class="social-media-section">
+                  <div class="container">
+                    <div class="row justify-content-center">
+                      <div class="col-md-8 text-center">
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>

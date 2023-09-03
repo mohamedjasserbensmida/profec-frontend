@@ -1,0 +1,45 @@
+.gradient-custom-2 {
+
+    /* Fallback for old browsers */
+    background: #fcfcfc; /* Bleu */
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #5896dd, #578257	); /* Bleu vers Vert */
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right,  #5896dd, #578257	); /* Bleu vers Vert *
+
+}
+/* Ajoutez ces styles à votre feuille de style CSS */
+}
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+.center-text img {
+  max-width: 100%; /* L'image ne dépassera pas la largeur de son conteneur */
+  max-height: 100%; /* L'image ne dépassera pas la hauteur de son conteneur */
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+  }
+  .spacer {
+    margin-right: 10px; /* Ajustez la valeur selon l'espace désiré */
+  }
+  .facebook-icon,
+  .globe-icon {
+    color: #fff;
+  }
+}
