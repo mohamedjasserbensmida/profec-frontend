@@ -2,7 +2,7 @@
   <p-toast></p-toast>
   <div class="col-12">
     <div class="card px-2">
-      <p-table #dt1 [value]="UsersList" dataKey="id" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 25, 50]"
+      <p-table #dt1 [value]="UsersList" dataKey="id" [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 25, 50]"
         [paginator]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [globalFilterFields]="['nomUser']"
@@ -33,12 +33,27 @@
             </th>
             <th style="min-width:10rem">
               <div class="flex align-items-center">
+                Current Department
+              </div>
+            </th>
+            <th style="min-width:10rem">
+              <div class="flex align-items-center">
                 Phone Number
               </div>
             </th>
             <th style="min-width:10rem">
               <div class="flex align-items-center">
                 Delete User
+              </div>
+            </th>
+            <th style="min-width:10rem">
+              <div class="flex align-items-center">
+                Assign to Department
+              </div>
+            </th>
+            <th style="min-width:10rem">
+              <div class="flex align-items-center">
+                Number of Days
               </div>
             </th>
           </tr>
@@ -52,25 +67,44 @@
               {{ user.emailUser }}
             </td>
             <td>
-            {{ user.role }}
-          </td>
+              {{ user.role }}
+            </td>
+            <td *ngIf="user.role.toLowerCase() === 'employee'" >
+              {{ user.departement.departementName }}
+            </td>
+            <td *ngIf="user.role.toLowerCase() !== 'employee'" >
+            </td>
             <td>
-            {{ user.numdetelUser }}
-          </td>
+              {{ user.numdetelUser }}
+            </td>
             <td>
               <p-button icon="pi pi-trash" styleClass="p-button-danger" (onClick)="deleteuser(user.idUser)"></p-button>
+            </td>
+            <td *ngIf="user.role.toLowerCase() === 'employee'" class="assign-department-cell">
+              <div class="department-selector" [class.open]="isDropdownOpen" (click)="toggleDropdown(user)">
+                <span class="dropdown-arrow"></span>
+                <select
+                  [(ngModel)]="user.selectedDepartmentId"
+                  (change)="assignUserToDepartment(user)"
+                >
+                  <option *ngFor="let departement of departements" [value]="departement.id">{{ departement.departementName }}</option>
+                </select>
+              </div>
+            </td>
+            
+            <td *ngIf="user.role.toLowerCase() === 'employee'">
+              {{ user.daysSinceCreation }} days
             </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="7">No User found.</td>
+            <td colspan="8">No User found.</td>
           </tr>
         </ng-template>
       </p-table>
     </div>
   </div>
-
 
   <p-dialog [(visible)]="deleteD" [closable]="false" [style]="{width: '450px'}" header="Delete" [modal]="true" class="p-fluid">
     <ng-template pTemplate="content">
@@ -78,9 +112,7 @@
     </ng-template>
     <ng-template pTemplate="footer">
       <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="deleteD=false"></button>
-      <button pButton pRipple label="Delete" icon="pi pi-check"  class="p-button-text" (click)="ConfirmDelete()"></button>
+      <button pButton pRipple label="Delete" icon="pi pi-check" class="p-button-text" (click)="ConfirmDelete()"></button>
     </ng-template>
   </p-dialog>
-
-
 </div>

@@ -25,18 +25,15 @@ export class HomepageComponent implements OnInit{
         },
         {
           label: 'Departements Management',
-          icon: 'pi-ticket' ,
+          icon: 'pi pi-fw pi-users' ,
           routerLink: ['/home/departements']
-        },
-        {
-
         },
         {
           label: 'Conge Management',
           icon: 'pi pi-fw   pi-arrow-up'  ,
           routerLink: ['/home/conge/management']
 
-         },
+        },
         {
           label: 'Profile',
           icon: 'pi pi-fw pi-user',

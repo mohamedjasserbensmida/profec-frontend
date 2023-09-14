@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Style pour la carte */
+  .card {
+    width: 500%;
+    max-width: 800px; /* Ajustez cette valeur en fonction de vos besoins */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ajoutez ces styles dans votre fichier CSS */
+/* Styles pour le bouton professionnel */
+.professional-button {
+    background-color: #89cef1; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Supprime la bordure */
+    cursor: pointer; /* Curseur de la souris en main */
+    transition: background-color 0.3s ease; /* Animation de transition pour la couleur de fond */
+}
+
+.professional-button:hover {
+    background-color: #9ce3a0; /* Couleur de fond au survol */
+}
+
+  
+  /* Style pour l'en-tête de la carte */
+  .card-header {
+    background-color: #91bdeb;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+   
+  }
+
+  .button_ajouter{
+   height: auto;
+   padding-top: 30px;
+   margin-left: 220px
+  }
+
+  .mb-0 {
+
+    margin-left: 250px;
+  }
+  
+  /* Style pour la table */
+  .table {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  
+  /* Style pour les cellules de la table */
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Style pour les lignes impaires de la table */
+  .table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style pour les lignes de la table au survol */
+  .table tbody tr:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Style pour le message d'alerte */
+  .alert-info {
+    margin-top: 10px;
+  }
+  

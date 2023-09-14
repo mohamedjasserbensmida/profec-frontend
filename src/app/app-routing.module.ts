@@ -13,8 +13,6 @@ const routes: Routes = [
       {path:'user',loadChildren:()=>import('./profile/profile.module').then(i=>i.ProfileModule)},
       {path:'conge',loadChildren:()=>import('./conge/conge.module').then(i=>i.CongeModule)},
       {path:'departements',loadChildren:()=>import('./departements/departements.module').then(i=>i.DepartementsModule)},
-
-
     ]},
 
 ];

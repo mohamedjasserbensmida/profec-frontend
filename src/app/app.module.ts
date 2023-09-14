@@ -18,7 +18,8 @@ import { ForgotpasswordComponent } from './Auth/forgotpassword/forgotpassword.co
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+  
   ],
     imports: [
         BrowserModule,
@@ -31,6 +32,7 @@ import { ForgotpasswordComponent } from './Auth/forgotpassword/forgotpassword.co
         MenubarModule,
         HomeModule,
         BrowserAnimationsModule,
+        
  
 
     ],

@@ -1,1 +1,53 @@
-<p>departements works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mt-3">
+          <div class="card-header">
+            <h5 class="mb-0">Liste des Départements</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Nom du Département</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let departement of departements">
+                    <td>{{ departement.departementName }}</td>
+                   
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="departements.length === 0" class="alert alert-info">Aucun département trouvé.</div>
+            <div class="button_ajouter">
+              <button class="professional-button" (click)="showAddDialog()">+ Ajouter Département</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <p-dialog [(visible)]="addDialogVisible" [closable]="false" [style]="{width: '450px'}" header="Ajouter Département" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+      <div class="field">
+        <label>Nom du Département :</label>
+        <input type="text" pInputText [(ngModel)]="newDepartement.departementName" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !newDepartement.departementName}" />
+        <small class="ng-dirty ng-invalid" *ngIf="submitted && !newDepartement.departementName">Le nom du département est requis.</small>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button type="button" class="p-button p-button-text p-button-danger" (click)="addDialogVisible = false; newDepartement = {}">Annuler</button>
+      <button type="button" class="p-button p-button-text p-button-success" (click)="addDepartement()">Ajouter</button>
+    </ng-template>
+  </p-dialog>
+  
+  
+  
