@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit{
       phoneNumber:this.formBuilder.control(null,[Validators.required,Validators.pattern(/^\d{8}$/)]),
       password:this.formBuilder.control(null,[Validators.required]),
       role:this.formBuilder.control(null,[Validators.required,Validators.pattern(/^(employee)$/)]),
+      
 
     })
   }

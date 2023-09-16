@@ -6,7 +6,6 @@ import { MessageService } from "primeng/api";
 import { DepartementsService } from 'src/app/services/departements.service';
 import { Departements } from 'src/app/modules/Departements';
 
-
 @Component({
   selector: 'app-usersaccount',
   templateUrl: './usersaccount.component.html',
@@ -42,8 +41,6 @@ export class UsersaccountComponent implements OnInit {
     });
   }
 
-
-
   getDaysSinceCreation(user: User) {
     if (user.role.toLowerCase() === 'employee') {
       this.Auth.getDaysSinceCreation(user.idUser).subscribe(
@@ -56,26 +53,19 @@ export class UsersaccountComponent implements OnInit {
       );
     }
   }
+  
+  
+  
+  
 
   toggleDropdown(user: User)  {
     user.isDropdownOpen = !user.isDropdownOpen;
-    if (!user.isDropdownOpen) {
-      this.closeAllDropdowns();
-    }
   }
-
-  closeAllDropdowns() {
-    this.UsersList.forEach((user) => {
-      user.isDropdownOpen = false;
-    });
-  }
-  
 
   getDepartmentName(departmentId: number): string {
     const department = this.departements.find(d => d.id === departmentId);
     return department ? department.departementName || '' : '';
   }
-
 
   getDepartments() {
     this.departementService.getDepartements().subscribe({
@@ -88,28 +78,22 @@ export class UsersaccountComponent implements OnInit {
       }
     });
   }
-  
+
   refreshUserDepartmentName(user: User) {
     if (user.selectedDepartmentId !== null) {
       user.currentDepartmentName = this.getDepartmentName(user.selectedDepartmentId);
-      console.log('Mise à jour du département actuel pour l\'utilisateur :', user.nomUser, 'Département actuel :', user.currentDepartmentName);
     } else {
       user.currentDepartmentName = "Aucun département";
-      console.log('Utilisateur sans département :', user.nomUser);
     }
   }
-  
-  
 
   assignUserToDepartment(user: User) {
-    const departmentId = user.selectedDepartmentId; // Obtenez la valeur sélectionnée du user
+    const departmentId = user.selectedDepartmentId;
     if (departmentId !== null) {
-      user.selectedDepartmentId = departmentId;
-      console.log('Affectation du département pour l\'utilisateur :', user.nomUser, 'ID du département :', departmentId);
-      localStorage.setItem(`user_department_${user.idUser}`, departmentId.toString());
       this.Auth.assignEmployeeToDepartment(user.idUser, departmentId).subscribe(
         (response) => {
           this.refreshUserDepartmentName(user);
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Employee assigned to department successfully' });
         },
         (error) => {
           console.error(error);
@@ -117,19 +101,17 @@ export class UsersaccountComponent implements OnInit {
       );
     }
   }
-  
 
   getAllUsers() {  
-      this.Auth.getAllUsers().subscribe({
-        next:(data)=>{
-          this.UsersList=data;
-          console.log(this.UsersList);
-        },error:(err)=>{
-          console.log(err)
-        }
-      })
-    }
-  
+    this.Auth.getAllUsers().subscribe({
+      next:(data)=>{
+        this.UsersList=data;
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    });
+  }
 
   clear(table: Table) {
     table.clear();
@@ -152,8 +134,4 @@ export class UsersaccountComponent implements OnInit {
       }
     });
   }
-  
-  
-
-
 }

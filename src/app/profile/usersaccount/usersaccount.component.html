@@ -69,8 +69,8 @@
             <td>
               {{ user.role }}
             </td>
-            <td *ngIf="user.role.toLowerCase() === 'employee'" >
-              {{ user.departement.departementName }}
+            <td *ngIf="user.role.toLowerCase() === 'employee'">
+              {{ user.departement ? user.departement.departementName : 'Non affecté' }}
             </td>
             <td *ngIf="user.role.toLowerCase() !== 'employee'" >
             </td>
